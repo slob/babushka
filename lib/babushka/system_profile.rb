@@ -6,7 +6,8 @@ module Babushka
     def self.for_host
       {
         'Linux' => LinuxSystemProfile,
-        'Darwin' => OSXSystemProfile
+        'Darwin' => OSXSystemProfile,
+        'FreeBSD' => FreeBSDSystemProfile
       }[shell('uname -s')].try(:for_flavour)
     end
 
@@ -178,5 +179,18 @@ module Babushka
     def pkg_helper; PacmanHelper end
     def flavour; :arch end
     def version; ''; end
+  end
+
+  class FreeBSDSystemProfile < SystemProfile
+    def freebsd?; true end
+    def system; :freebsd end
+    def system_str; 'FreeBSD' end
+    def flavour; system end
+    def flavour_str; system_str end
+    def version; version_info[/^(\d+(?:\.\d+))*-/, 1] end
+    def release; version_info[/^\d+(?:\.\d+)*-(.*)$/, 1] end
+    def get_version_info; shell 'uname -r' end
+    def pkg_helper; FreeBSDPkgHelper end
+    def total_memory; shell("sysctl -n hw.physmem").to_i end
   end
 end
