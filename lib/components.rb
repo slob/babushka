@@ -63,6 +63,7 @@ module Babushka
     pkg_helpers/pip_helper
     pkg_helpers/npm_helper
     pkg_helpers/pacman_helper
+    pkg_helpers/freebsdpkg_helper
     dsl
     dep
     dep_pool
