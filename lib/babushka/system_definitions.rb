@@ -46,11 +46,11 @@ module Babushka
             '5.0' => :lenny,
             '6.0' => :squeeze,
             '7.0' => :wheezy
+          },
+          :freebsd => {
+            'default' => :freebsd
           }
-        },
-        :freebsd => {
-          :freebsd => Hash.new.default(:freebsd)
-        },
+        }
       }
     end
 
@@ -84,10 +84,10 @@ module Babushka
           },
           :debian => {
             '5.0.4' => 'Lenny'
+          },
+          :freebsd => {
+            'default' => 'FreeBSD'
           }
-        },
-        :freebsd => {
-          :freebsd => Hash.new.default('FreeBSD')
         },
       }
     end

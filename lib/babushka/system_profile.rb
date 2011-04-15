@@ -193,5 +193,7 @@ module Babushka
     def get_version_info; shell 'uname -r' end
     def pkg_helper; FreeBSDPkgHelper end
     def total_memory; shell("sysctl -n hw.physmem").to_i end
+    def name; :freebsd end
+    def name_str; 'FreeBSD' end
   end
 end
