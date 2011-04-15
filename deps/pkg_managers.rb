@@ -94,3 +94,11 @@ dep 'pip.src' do
     log_shell "Installing pip", "python setup.py install", :sudo => !which('python').p.writable?
   }
 end
+
+dep 'freebsdpkg', :template => 'external' do
+  expects 'pkg_add'
+  otherwise {
+    log "Your system doesn't seem to have pkg_add installed. Is it FreeBSD-based?"
+  }
+end
+
